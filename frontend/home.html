@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoChrome · بنفش</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SLIDER -->
+    <div class="slider" id="slider">
+        <div class="slide active">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80" alt="نئون">
+            <div class="slide-caption">سرعت نئون · ۲ برابر پرفورمنس</div>
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80" alt="کوانتوم">
+            <div class="slide-caption">پکیج کوانتوم · نودهای نامحدود</div>
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1200&q=80" alt="شیلد">
+            <div class="slide-caption">هسته محافظ · رمزنگاری پیشرفته</div>
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80" alt="اینفینیتی">
+            <div class="slide-caption">جریان بی‌نهایت · بدون محدودیت</div>
+        </div>
+        <div class="dots" id="dots"></div>
+    </div>
+
+    <!-- PACKAGES -->
+    <section class="packages">
+        <div class="packages-header">
+            <h2 class="section-title">پکیج‌ها</h2>
+            <span class="section-hint">۴ مورد</span>
+        </div>
+
+        <button class="pkg" data-pkg="starter">
+            <div class="pkg-text">
+                <span class="pkg-name">شروع</span>
+                <span class="pkg-category">اقتصادی</span>
+            </div>
+            <svg class="pkg-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+
+        <button class="pkg" data-pkg="pro">
+            <div class="pkg-text">
+                <span class="pkg-name">حرفه‌ای</span>
+                <span class="pkg-category">پرفروش</span>
+            </div>
+            <svg class="pkg-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+
+        <button class="pkg" data-pkg="ultra">
+            <div class="pkg-text">
+                <span class="pkg-name">اولترا</span>
+                <span class="pkg-category">پرقدرت</span>
+            </div>
+            <svg class="pkg-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+
+        <button class="pkg" data-pkg="enterprise">
+            <div class="pkg-text">
+                <span class="pkg-name">سازمانی</span>
+                <span class="pkg-category">اختصاصی</span>
+            </div>
+            <svg class="pkg-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div>
+            <div class="footer-logo">MONO_UI</div>
+            <p class="footer-desc">پلتفرم یکپارچه برای مدیریت پکیج‌های شبکه، دسترسی پرسرعت و اتصال امن.</p>
+        </div>
+
+        <div class="footer-links">
+            <div class="footer-col">
+                <span class="footer-col-title">محصول</span>
+                <a class="footer-link">پکیج‌ها</a>
+                <a class="footer-link">قیمت‌گذاری</a>
+                <a class="footer-link">مقایسه</a>
+            </div>
+            <div class="footer-col">
+                <span class="footer-col-title">پشتیبانی</span>
+                <a class="footer-link">راهنما</a>
+                <a class="footer-link">تماس</a>
+                <a class="footer-link">سوالات</a>
+            </div>
+            <div class="footer-col">
+                <span class="footer-col-title">قوانین</span>
+                <a class="footer-link">حریم خصوصی</a>
+                <a class="footer-link">شرایط</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© ۱۴۰۳ مونوکروم</span>
+            <div class="status">
+                <span class="status-dot"></span>
+                <span>شبکه فعال</span>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<!-- BOTTOM MENU -->
+<nav class="menu">
+    <button class="menu-btn active" data-page="home" aria-label="خانه">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+    </button>
+    <button class="menu-btn" data-page="packages" aria-label="پکیج‌ها">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+        </svg>
+    </button>
+    <button class="menu-btn" data-page="network" aria-label="شبکه">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0"/>
+            <line x1="12" y1="20" x2="12.01" y2="20"/>
+        </svg>
+    </button>
+    <button class="menu-btn" data-page="profile" aria-label="پروفایل">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+        </svg>
+    </button>
+</nav>
+
+<script src="/script.js"></script>
+</body>
+
+</html>

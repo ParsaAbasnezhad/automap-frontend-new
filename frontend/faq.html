@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoChrome · سوالات متداول</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="faq.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="page-header-top">
+            <h1 class="page-title">سوالات متداول</h1>
+            <span class="page-count">۱۲ سوال</span>
+        </div>
+        <p class="page-subtitle">پاسخ پرتکرارترین پرسش‌های کاربران مونوکروم</p>
+    </header>
+
+    <!-- SEARCH -->
+    <div class="search">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" class="search-input" placeholder="جستجو در سوالات..." id="searchInput">
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="categories" id="categories">
+        <button class="cat active" data-cat="all">همه</button>
+        <button class="cat" data-cat="account">حساب</button>
+        <button class="cat" data-cat="package">پکیج</button>
+        <button class="cat" data-cat="payment">پرداخت</button>
+        <button class="cat" data-cat="technical">فنی</button>
+    </div>
+
+    <!-- FAQ LIST -->
+    <section class="faq-list" id="faqList">
+
+        <!-- Item -->
+        <div class="faq-item" data-cat="account">
+            <button class="faq-question">
+                <span class="faq-q-text">چطور می‌توانم حساب کاربری بسازم؟</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    برای ساخت حساب کاربری کافیست روی دکمه «ورود / ثبت‌نام» در بالای صفحه کلیک کنید، شماره موبایل خود را وارد کنید و کد تأیید پیامک‌شده را در کادر مربوطه بنویسید. پس از تأیید، حساب شما به‌صورت خودکار ساخته می‌شود.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item" data-cat="account">
+            <button class="faq-question">
+                <span class="faq-q-text">رمز عبورم را فراموش کرده‌ام، چه کنم؟</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    در صفحه ورود، گزینه «فراموشی رمز عبور» را انتخاب کنید. یک لینک بازیابی به ایمیل یا کد تأیید به شماره موبایل ثبت‌شده شما ارسال می‌شود و می‌توانید رمز جدید تعیین کنید.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item" data-cat="package">
+            <button class="faq-question">
+                <span class="faq-q-text">تفاوت پکیج حرفه‌ای و اولترا چیست؟</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    پکیج حرفه‌ای برای کاربران معمولی با ترافیک ماهانه ۵۰ گیگابایت و پشتیبانی از ۳ دستگاه مناسب است. پکیج اولترا ترافیک نامحدود، اتصال همزمان ۱۰ دستگاه و دسترسی به نودهای اختصاصی پرسرعت را ارائه می‌دهد.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item" data-cat="package">
+            <button class="faq-question">
+                <span class="faq-q-text">آیا می‌توانم پکیجم را وسط دوره تغییر دهم؟</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    بله. از بخش «پکیج‌های من» می‌توانید در هر زمان ارتقا یا تغییر پکیج دهید. هزینه باقی‌مانده دوره فعلی به‌صورت اعتبار در حساب شما محاسبه و از مبلغ پکیج جدید کسر می‌شود.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item" data-cat="payment">
+            <button class="faq-question">
+                <span class="faq-q-text">چه روش‌های پرداختی پشتیبانی می‌شود؟</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    پرداخت از طریق تمام کارت‌های بانکی عضو شتاب، کیف پول داخلی مونوکروم، و رمزارزهای معتبر (BTC، ETH، USDT) امکان‌پذیر است. فاکتور رسمی برای مشتریان سازمانی نیز صادر می‌شود.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item" data-cat="payment">
+            <button class="faq-question">
+                <span class="faq-q-text">امکان بازگشت وجه وجود دارد؟</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    تا ۷ روز پس از خرید، در صورتی که کمتر از ۱۰٪ از ترافیک پکیج مصرف شده باشد، می‌توانید درخواست بازگشت وجه ثبت کنید. مبلغ حداکثر تا ۷۲ ساعت کاری به حساب شما بازگردانده می‌شود.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item" data-cat="technical">
+            <button class="faq-question">
+                <span class="faq-q-text">چرا سرعت اتصال من پایین آمده است؟</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    دلایل متعددی می‌تواند مؤثر باشد: شلوغی نود فعلی، محدودیت ISP، یا فاصله جغرافیایی. پیشنهاد می‌کنیم نود دیگری را از لیست انتخاب کنید، اتصال خود را روی شبکه Wi-Fi پایدارتر تست کنید، یا با پشتیبانی تماس بگیرید.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item" data-cat="technical">
+            <button class="faq-question">
+                <span class="faq-q-text">چند دستگاه می‌توانم همزمان وصل کنم؟</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    بسته به پکیج انتخابی: پکیج شروع ۱ دستگاه، حرفه‌ای ۳ دستگاه، اولترا ۱۰ دستگاه و پکیج سازمانی بدون محدودیت دستگاه. تعداد اتصال‌های همزمان در پنل کاربری قابل مشاهده است.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item" data-cat="technical">
+            <button class="faq-question">
+                <span class="faq-q-text">روی چه سیستم‌عاملی کار می‌کند؟</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    مونوکروم روی Windows، macOS، Linux، Android و iOS به‌طور کامل پشتیبانی می‌شود. همچنین برای روترها و دستگاه‌های اینترنت اشیا نسخه سبک ارائه شده است.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item" data-cat="account">
+            <button class="faq-question">
+                <span class="faq-q-text">اطلاعات من امن است؟</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    تمام ترافیک با رمزنگاری AES-256 محافظت می‌شود و ما هیچ‌گونه لاگ فعالیت کاربران را ذخیره نمی‌کنیم. سیاست حریم خصوصی کامل در صفحه «حریم خصوصی» قابل مطالعه است.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item" data-cat="package">
+            <button class="faq-question">
+                <span class="faq-q-text">پکیج سازمانی چه امکانات اضافه‌ای دارد؟</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    پکیج سازمانی شامل IP اختصاصی، پهنای باند تضمین‌شده، مدیریت متمرکز کاربران، گزارش‌های تحلیلی، پشتیبانی ۲۴/۷ اختصاصی و امکان استقرار روی زیرساخت اختصاصی مشتری است.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item" data-cat="payment">
+            <button class="faq-question">
+                <span class="faq-q-text">فاکتور رسمی صادر می‌کنید؟</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    بله، برای تمام خریدها فاکتور رسمی با مهر و امضا صادر می‌شود. درخواست فاکتور رسمی را می‌توانید هنگام خرید یا از طریق پنل کاربری ثبت کنید.
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- EMPTY STATE -->
+    <div class="empty" id="emptyState" style="display: none;">
+        <div class="empty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+        </div>
+        <p class="empty-text">سوالی با این عبارت پیدا نشد</p>
+        <p class="empty-sub">عبارت دیگری را امتحان کنید یا با پشتیبانی تماس بگیرید</p>
+    </div>
+
+    <!-- CONTACT -->
+    <section class="contact">
+        <div class="contact-text">
+            <h3 class="contact-title">پاسخ سوال‌تان را پیدا نکردید؟</h3>
+            <p class="contact-sub">تیم پشتیبانی ما ۲۴ ساعته آماده کمک به شماست</p>
+        </div>
+        <button class="contact-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <span>گفتگو با پشتیبانی</span>
+        </button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div>
+            <div class="footer-logo">MONO_UI</div>
+            <p class="footer-desc">پلتفرم یکپارچه برای مدیریت پکیج‌های شبکه، دسترسی پرسرعت و اتصال امن.</p>
+        </div>
+
+        <div class="footer-links">
+            <div class="footer-col">
+                <span class="footer-col-title">محصول</span>
+                <a class="footer-link">پکیج‌ها</a>
+                <a class="footer-link">قیمت‌گذاری</a>
+                <a class="footer-link">مقایسه</a>
+            </div>
+            <div class="footer-col">
+                <span class="footer-col-title">پشتیبانی</span>
+                <a class="footer-link">راهنما</a>
+                <a class="footer-link">تماس</a>
+                <a class="footer-link">سوالات</a>
+            </div>
+            <div class="footer-col">
+                <span class="footer-col-title">قوانین</span>
+                <a class="footer-link">حریم خصوصی</a>
+                <a class="footer-link">شرایط</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© ۱۴۰۳ مونوکروم</span>
+            <div class="status">
+                <span class="status-dot"></span>
+                <span>شبکه فعال</span>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<!-- BOTTOM MENU -->
+<nav class="menu">
+    <button class="menu-btn" data-page="home" aria-label="خانه">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+    </button>
+    <button class="menu-btn" data-page="packages" aria-label="پکیج‌ها">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+        </svg>
+    </button>
+    <button class="menu-btn" data-page="network" aria-label="شبکه">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0"/>
+            <line x1="12" y1="20" x2="12.01" y2="20"/>
+        </svg>
+    </button>
+    <button class="menu-btn active" data-page="profile" aria-label="پروفایل">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+        </svg>
+    </button>
+</nav>
+
+<script src="faq.js"></script>
+<script src="/script.js"></script>
+</body>
+
+</html>

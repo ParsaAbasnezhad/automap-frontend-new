@@ -1,0 +1,320 @@
+/* ========== PAGE HEADER ========== */
+
+.page-header {
+    padding: 4px 4px 0;
+}
+
+.page-header-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -.02em;
+}
+
+.page-count {
+    font-size: .72rem;
+    font-weight: 500;
+    color: var(--purple-deep);
+    background: var(--purple-soft);
+    padding: 3px 10px;
+    border-radius: 100px;
+}
+
+.page-subtitle {
+    font-size: .82rem;
+    color: var(--text-2);
+    line-height: 1.7;
+}
+
+
+/* ========== SEARCH ========== */
+
+.search {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    right: 16px;
+    width: 18px;
+    height: 18px;
+    color: var(--text-3);
+    pointer-events: none;
+}
+
+.search-input {
+    width: 100%;
+    padding: 14px 46px 14px 18px;
+    font-family: inherit;
+    font-size: .85rem;
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    outline: none;
+    transition: all .25s cubic-bezier(.4, 0, .2, 1);
+}
+
+.search-input::placeholder {
+    color: var(--text-3);
+}
+
+.search-input:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 4px var(--purple-glow);
+}
+
+
+/* ========== CATEGORIES ========== */
+
+.categories {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+}
+
+.categories::-webkit-scrollbar {
+    display: none;
+}
+
+.cat {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: .78rem;
+    font-weight: 500;
+    color: var(--text-2);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all .22s cubic-bezier(.4, 0, .2, 1);
+    white-space: nowrap;
+}
+
+.cat:hover {
+    border-color: var(--line-strong);
+    color: var(--text);
+}
+
+.cat.active {
+    color: #fff;
+    background: var(--purple);
+    border-color: var(--purple);
+    box-shadow: 0 4px 12px -4px var(--purple-glow);
+}
+
+
+/* ========== FAQ LIST ========== */
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.faq-item {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color .25s, box-shadow .25s;
+    animation: fadeIn .35s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.faq-item:hover {
+    border-color: var(--line-strong);
+}
+
+.faq-item.open {
+    border-color: var(--purple);
+    box-shadow: 0 6px 20px -12px var(--purple-glow);
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 16px 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    color: inherit;
+    text-align: right;
+}
+
+.faq-q-text {
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.55;
+    transition: color .2s;
+}
+
+.faq-item.open .faq-q-text {
+    color: var(--purple-deep);
+}
+
+.faq-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--text-3);
+    transition: transform .3s cubic-bezier(.4, 0, .2, 1), color .25s;
+}
+
+.faq-item.open .faq-icon {
+    color: var(--purple);
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s cubic-bezier(.4, 0, .2, 1);
+}
+
+.faq-item.open .faq-answer {
+    max-height: 400px;
+}
+
+.faq-answer-inner {
+    padding: 0 18px 18px 18px;
+    font-size: .8rem;
+    line-height: 1.85;
+    color: var(--text-2);
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+    margin: 0 0 0 0;
+    position: relative;
+}
+
+.faq-answer-inner::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: 18px;
+    width: 24px;
+    height: 2px;
+    background: var(--purple);
+    border-radius: 2px;
+}
+
+
+/* ========== EMPTY STATE ========== */
+
+.empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-3);
+}
+
+.empty-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 14px;
+    color: var(--text-3);
+    opacity: .5;
+}
+
+.empty-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.empty-text {
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--text-2);
+    margin-bottom: 4px;
+}
+
+.empty-sub {
+    font-size: .75rem;
+    color: var(--text-3);
+}
+
+
+/* ========== CONTACT ========== */
+
+.contact {
+    padding: 22px 20px;
+    background: linear-gradient(135deg, var(--purple-soft) 0%, #f9f7ff 100%);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.contact-title {
+    font-size: .92rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.contact-sub {
+    font-size: .76rem;
+    color: var(--text-2);
+    line-height: 1.7;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 18px;
+    font-family: inherit;
+    font-size: .8rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--purple);
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all .25s cubic-bezier(.4, 0, .2, 1);
+    box-shadow: 0 6px 16px -6px var(--purple-glow);
+}
+
+.contact-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.contact-btn:hover {
+    background: var(--purple-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px -8px var(--purple-glow);
+}
+
+.contact-btn:active {
+    transform: translateY(0) scale(.98);
+}
