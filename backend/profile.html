@@ -1,0 +1,120 @@
+{% extends "site/base_site.html" %}
+{% load static %}
+
+{% block title %}پروفایل کاربری - اتومپ{% endblock %}
+
+{# مثل نسخه‌ی فرانت: بدون بوت‌استرپ/FontAwesome و با topbar مخصوص خودش #}
+{% block vendor_css %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block site_header %}
+<!-- TOP BAR -->
+<header class="topbar">
+    <h1 class="topbar-title">پروفایل من</h1>
+    <form method="post" action="{% url 'account:logout' %}" style="display:flex;">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn" title="خروج" aria-label="خروج">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+        </button>
+    </form>
+</header>
+{% endblock %}
+
+{% block main_content %}
+
+<!-- PROFILE CARD -->
+<section class="profile-card reveal">
+    <div class="profile-avatar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+        </svg>
+    </div>
+    <h2 class="profile-name">{{ user.get_full_name|default:user.phone }}</h2>
+    <p class="profile-phone" dir="ltr">{{ user.phone }}</p>
+
+    <div class="profile-stats">
+        <div class="stat">
+            <span class="stat-number" data-target="{{ accessed_count }}">{{ accessed_count }}</span>
+            <span class="stat-label">پک فعال</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number" data-target="{{ packs|length }}">{{ packs|length }}</span>
+            <span class="stat-label">دسترسی</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number" data-target="{% now 'Y' %}">{% now "Y" %}</span>
+            <span class="stat-label">عضو از</span>
+        </div>
+    </div>
+</section>
+
+<!-- QUICK ACTIONS -->
+<section class="quick-actions reveal">
+    <a href="{% url 'main:home' %}" class="action-btn">
+    <span class="action-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </span>
+        <span class="action-label">خانه</span>
+    </a>
+    <a href="{% url 'main:about' %}" class="action-btn">
+    <span class="action-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    </span>
+        <span class="action-label">درباره ما</span>
+    </a>
+    <a href="{% url 'main:unlock_info' %}" class="action-btn">
+    <span class="action-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    </span>
+        <span class="action-label">خرید</span>
+    </a>
+</section>
+
+<!-- PURCHASED PACKS -->
+<section class="packages reveal">
+    <div class="packages-header">
+        <h2 class="section-title">پک‌های خریداری شده</h2>
+        <span class="section-hint">{{ packs|length }} مورد</span>
+    </div>
+
+    {% if packs %}
+    {% regroup packs by package as access_groups %}
+    {% for g in access_groups %}
+    <div class="access-group">
+        <div class="access-group-title">{{ g.grouper.name }}</div>
+
+        {% for pack in g.list %}
+        <div class="access-item">
+            <div class="access-item-info">
+                <strong class="access-item-name">{{ pack.name }}</strong>
+                {% if pack.short_description %}
+                <span class="access-item-meta">{{ pack.short_description }}</span>
+                {% endif %}
+            </div>
+            <a href="{% url 'main:amper_list' pack.id %}" class="access-item-btn">ورود</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="access-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <p>هنوز هیچ پکی برای شما فعال نشده است.</p>
+        <a href="{% url 'main:unlock_info' %}">خرید پک جدید ←</a>
+    </div>
+    {% endif %}
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}

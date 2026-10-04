@@ -1,0 +1,21 @@
+/* home.css — فقط چیزهایی که نسخه‌ی بکند بیشتر از فرانت نیاز داره */
+
+/* لینک روی اسلاید (کل اسلاید کلیک‌پذیره) */
+.slide-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.slide-caption { pointer-events: none; }
+
+/* وقتی دسته‌بندی‌ای نیست */
+.home-empty {
+    padding: 28px 16px;
+    text-align: center;
+    font-size: .82rem;
+    color: var(--text-3);
+    background: var(--card);
+    border: 1px dashed var(--line-strong);
+    border-radius: 14px;
+}

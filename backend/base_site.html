@@ -1,0 +1,73 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <title>{% block title %}اتومپ{% endblock %}</title>
+
+    <!-- Font Awesome + Bootstrap (برای صفحه‌هایی که هنوز تبدیل نشدن؛ home این بلاک رو خالی می‌کنه) -->
+    {% block vendor_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="{% static 'css/bootstrap.rtl.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}" />
+    {% endblock %}
+
+    <!-- فونت Vazirmatn از روی فایل‌های Vazir خودت (بدون نیاز به گوگل) -->
+    <style>
+        @font-face { font-family: "Vazirmatn"; src: url("{% static 'fonts/Vazir-Regular.woff2' %}") format("woff2"); font-weight: 300 400; font-display: swap; }
+        @font-face { font-family: "Vazirmatn"; src: url("{% static 'fonts/Vazir-Medium.woff2' %}") format("woff2"); font-weight: 500; font-display: swap; }
+        @font-face { font-family: "Vazirmatn"; src: url("{% static 'fonts/Vazir-Bold.woff2' %}") format("woff2"); font-weight: 600 800; font-display: swap; }
+    </style>
+
+    <!-- استایل بنفش (همون style.css) + استایل‌های مشترک سایت -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/site.css' %}" />
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+<div class="app">
+    {% block site_header %}
+    <header class="site-header">
+        <a href="{% url 'main:home' %}" class="logo-site" draggable="false">
+            <img src="{% static 'svg/logo_no_bg.svg' %}" alt="لوگو" draggable="false" />
+            <span class="site-title">Auto<span>Map</span></span>
+        </a>
+        <div class="head-extra">
+            {% block header_content %}{% endblock %}
+            {% if user.is_authenticated and user.is_staff %}
+            <a href="/admin" class="head-chip"><i class="fas fa-crown"></i><span>پنل ادمین</span></a>
+            <a href="/admin-panel" class="head-chip"><i class="fas fa-crown"></i><span>1پنل ادمین</span></a>
+            {% endif %}
+        </div>
+    </header>
+    {% endblock %}
+
+    <main class="app-main">{% block main_content %}{% endblock %}</main>
+</div>
+
+{% block bottom_menu %}
+<nav class="menu">
+    <a href="{% url 'main:home' %}" class="menu-btn {% if request.resolver_match.url_name == 'home' %}active{% endif %}" aria-label="خانه" draggable="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </a>
+    <a href="{% url 'main:profile' %}" class="menu-btn {% if request.resolver_match.url_name == 'profile' %}active{% endif %}" aria-label="پروفایل" draggable="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="{% url 'main:notifications' %}" id="notifMenuBtn" class="menu-btn {% if request.resolver_match.url_name == 'notifications' %}active{% endif %}" aria-label="اطلاعیه‌ها" draggable="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="notif-dot" id="notifMenuDot" style="display:none"></span>
+    </a>
+    <a href="{% url 'main:unlock_info' %}" class="menu-btn {% if request.resolver_match.url_name == 'unlock_info' %}active{% endif %}" aria-label="پشتیبانی" draggable="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+    </a>
+</nav>
+{% endblock %}
+
+<script src="{% static 'js/base.js' %}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

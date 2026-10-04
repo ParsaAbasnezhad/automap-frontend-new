@@ -1,0 +1,95 @@
+{% extends "site/base_site.html" %}
+{% load static %}
+
+{% block title %}اتومپ — نقشه خودرو{% endblock %}
+
+{# مثل نسخه‌ی فرانت: بدون بوت‌استرپ/FontAwesome و بدون هدر #}
+{% block vendor_css %}{% endblock %}
+{% block site_header %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block main_content %}
+
+<!-- SLIDER -->
+<div class="slider" id="slider">
+    {% for slide in slides %}
+    <div class="slide{% if forloop.first %} active{% endif %}">
+        <img src="{{ slide.image.url }}" alt="{{ slide.title|default:'اسلاید تبلیغاتی' }}" {% if not forloop.first %}loading="lazy"{% endif %} draggable="false">
+        {% if slide.link %}
+        <a class="slide-link" href="{{ slide.link }}" {% if slide.link|slice:":4" == "http" %}target="_blank" rel="noopener noreferrer"{% endif %} draggable="false" aria-label="{{ slide.title|default:'مشاهده' }}"></a>
+        {% endif %}
+        {% if slide.title %}<div class="slide-caption">{{ slide.title }}</div>{% endif %}
+    </div>
+    {% empty %}
+    <div class="slide active">
+        <img src="{% static 'img/IMG1.jpg' %}" alt="اتومپ" draggable="false">
+        <div class="slide-caption">به اتومپ خوش آمدید</div>
+    </div>
+    {% endfor %}
+    <div class="dots" id="dots"></div>
+</div>
+
+<!-- PACKAGES -->
+<section class="packages">
+    <div class="packages-header">
+        <h2 class="section-title">دسته‌بندی‌های تخصصی</h2>
+        {% if categories %}<span class="section-hint">{{ categories|length }} مورد</span>{% endif %}
+    </div>
+
+    {% for category in categories %}
+    <a href="{% url 'main:package_list' category.code %}" class="pkg" draggable="false">
+        <div class="pkg-text">
+            <span class="pkg-name">{{ category.title }}</span>
+            <span class="pkg-category">پکیج‌های آموزشی</span>
+        </div>
+        <svg class="pkg-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </a>
+    {% empty %}
+    <div class="home-empty">دسته‌بندی‌ای یافت نشد</div>
+    {% endfor %}
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div>
+        <div class="footer-logo">AUTOMAP</div>
+        <p class="footer-desc">پلتفرم تخصصی نقشه و آموزش تعمیرات خودرو؛ دسترسی سریع به پکیج‌ها و امپرها.</p>
+    </div>
+
+    <div class="footer-links">
+        <div class="footer-col">
+            <span class="footer-col-title">محصول</span>
+            <a class="footer-link" href="{% url 'main:home' %}">پکیج‌ها</a>
+            <a class="footer-link" href="{% url 'main:unlock_info' %}">خرید</a>
+            <a class="footer-link" href="{% url 'main:profile' %}">پروفایل</a>
+        </div>
+        <div class="footer-col">
+            <span class="footer-col-title">پشتیبانی</span>
+            <a class="footer-link" href="{% url 'main:unlock_info' %}">راهنما</a>
+            <a class="footer-link" href="{% url 'main:notifications' %}">اطلاعیه‌ها</a>
+            <a class="footer-link" href="{% url 'main:about' %}">درباره ما</a>
+        </div>
+        <div class="footer-col">
+            <span class="footer-col-title">قوانین</span>
+            <a class="footer-link" href="#">حریم خصوصی</a>
+            <a class="footer-link" href="#">شرایط</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <span>© {% now "Y" %} اتومپ</span>
+        <div class="status">
+            <span class="status-dot"></span>
+            <span>سامانه فعال</span>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
