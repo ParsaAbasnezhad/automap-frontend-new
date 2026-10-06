@@ -1,0 +1,66 @@
+{% extends "site/base_site.html" %}
+{% load static %}
+
+{% block title %}{{ package.name }} — اتومپ{% endblock %}
+
+{% block vendor_css %}{% endblock %}
+{% block site_header %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/lists.css' %}">
+{% endblock %}
+
+{% block main_content %}
+
+<!-- HEAD -->
+<header class="page-head">
+    <a href="{% url 'main:package_list' category.code %}" class="back-link" aria-label="بازگشت" draggable="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <div class="page-head-text">
+        <span class="page-eyebrow">{{ category.title }}</span>
+        <h1 class="page-title">{{ package.name }}</h1>
+    </div>
+</header>
+
+<!-- LIST -->
+<section class="packages">
+    <div class="packages-header">
+        <h2 class="section-title">لیست پک‌ها</h2>
+        <span class="section-hint">{% with packs_with_access|length as total %}{{ total }} پک{% endwith %}</span>
+    </div>
+
+    {% for item in packs_with_access %}
+    {% if item.has_access %}
+    <a href="{% url 'main:amper_list' item.pack.id %}" class="pkg" draggable="false">
+      <span class="pkg-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </span>
+        <div class="pkg-text">
+            <span class="pkg-name">{{ item.pack.name }}</span>
+            <span class="pkg-category">{% if item.pack.short_description %}{{ item.pack.short_description }}{% else %}مشاهده امپرها{% endif %}</span>
+        </div>
+        <span class="pkg-cta">ورود</span>
+    </a>
+    {% else %}
+    <a href="{% url 'main:pack_unlock' item.pack.id %}" class="pkg locked" draggable="false">
+      <span class="pkg-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </span>
+        <div class="pkg-text">
+            <span class="pkg-name">{{ item.pack.name }}</span>
+            <span class="pkg-category">{% if item.pack.short_description %}{{ item.pack.short_description }}{% else %}برای دسترسی خرید کنید{% endif %}</span>
+        </div>
+        <span class="pkg-cta buy">خرید</span>
+    </a>
+    {% endif %}
+    {% empty %}
+    <div class="list-empty">پکی در این بسته موجود نیست</div>
+    {% endfor %}
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/lists.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "site/base_site.html" %}
+{% load static %}
+
+{% block title %}امپرهای {{ pack.name }} — اتومپ{% endblock %}
+
+{% block vendor_css %}{% endblock %}
+{% block site_header %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/lists.css' %}">
+{% endblock %}
+
+{% block main_content %}
+
+<!-- HEAD -->
+<header class="page-head">
+    <a href="{% url 'main:pack_list' pack.package.category.code pack.package.id %}" class="back-link" aria-label="بازگشت" draggable="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <div class="page-head-text">
+        <span class="page-eyebrow">{{ pack.package.name }} › {{ pack.name }}</span>
+        <h1 class="page-title">{{ pack.name }}</h1>
+    </div>
+</header>
+
+<!-- LIST -->
+<section class="packages">
+    <div class="packages-header">
+        <h2 class="section-title">لیست امپرها</h2>
+        <span class="section-hint">{% with ampers|length as c %}{{ c }} امپر{% endwith %}</span>
+    </div>
+
+    {% for amper in ampers %}
+    <a href="{% url 'main:tamirat_list' amper.id %}" class="pkg" draggable="false">
+    <span class="pkg-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    </span>
+        <div class="pkg-text">
+            <span class="pkg-name">{{ amper.name }}</span>
+            <span class="pkg-category">{% if amper.short_description %}{{ amper.short_description|truncatechars:42 }}{% else %}مشاهده تعمیرات و آموزش‌ها{% endif %}</span>
+        </div>
+        <svg class="pkg-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </a>
+    {% empty %}
+    <div class="list-empty">امپری در این پک وجود ندارد</div>
+    {% endfor %}
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/lists.js' %}"></script>
+{% endblock %}

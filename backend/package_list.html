@@ -1,0 +1,51 @@
+{% extends "site/base_site.html" %}
+{% load static %}
+
+{% block title %}{{ category.title }} — اتومپ{% endblock %}
+
+{% block vendor_css %}{% endblock %}
+{% block site_header %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/lists.css' %}">
+{% endblock %}
+
+{% block main_content %}
+
+<!-- HEAD -->
+<header class="page-head">
+    <a href="{% url 'main:home' %}" class="back-link" aria-label="بازگشت به خانه" draggable="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <div class="page-head-text">
+        <span class="page-eyebrow">بازگشت به خانه</span>
+        <h1 class="page-title">{{ category.title }}</h1>
+    </div>
+</header>
+
+<!-- LIST -->
+<section class="packages">
+    <div class="packages-header">
+        <h2 class="section-title">لیست پکیج‌ها</h2>
+        <span class="section-hint">{{ packages.count }} پکیج</span>
+    </div>
+
+    {% for package in packages %}
+    <a href="{% url 'main:pack_list' category.code package.id %}" class="pkg" draggable="false">
+        <span class="pkg-icon pkg-num">{{ forloop.counter|stringformat:"02d" }}</span>
+        <div class="pkg-text">
+            <span class="pkg-name">{{ package.name }}</span>
+            <span class="pkg-category">مشاهده جزئیات و امپرها</span>
+        </div>
+        <svg class="pkg-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </a>
+    {% empty %}
+    <div class="list-empty">پکیجی یافت نشد</div>
+    {% endfor %}
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/lists.js' %}"></script>
+{% endblock %}

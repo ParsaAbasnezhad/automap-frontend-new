@@ -26,6 +26,7 @@
     <!-- استایل بنفش (همون style.css) + استایل‌های مشترک سایت -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/site.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/ui.css' %}" />
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -67,6 +68,7 @@
 </nav>
 {% endblock %}
 
+<script src="{% static 'js/ui.js' %}"></script>
 <script src="{% static 'js/base.js' %}"></script>
 {% block extra_js %}{% endblock %}
 </body>
