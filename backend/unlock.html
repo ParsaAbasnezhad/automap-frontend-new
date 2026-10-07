@@ -1,0 +1,140 @@
+{% extends "site/base_site.html" %}
+{% load static %}
+
+{% block title %}{% if pack %}باز کردن {{ pack.name }}{% else %}پشتیبانی و راهنمای خرید{% endif %} - اتومپ{% endblock %}
+
+{# مثل بقیه‌ی صفحه‌ها: بدون بوت‌استرپ/FontAwesome و با هدر مخصوص همین صفحه #}
+{% block vendor_css %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/lists.css' %}">
+<link rel="stylesheet" href="{% static 'css/unlock.css' %}">
+{% endblock %}
+
+{% block site_header %}
+<!-- HEAD -->
+<header class="page-head">
+    <button type="button" class="back-link" onclick="window.history.back()" aria-label="بازگشت">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="page-head-text">
+        <span class="page-eyebrow">{% if pack %}باز کردن {{ pack.name }}{% else %}پشتیبانی و راهنمای خرید{% endif %}</span>
+        <h1 class="page-title">{% if pack %}اتومپ{% else %}پشتیبانی{% endif %}</h1>
+    </div>
+    <img class="unlock-logo" src="{% static 'svg/logo_no_bg.svg' %}" alt="لوگو" draggable="false">
+</header>
+{% endblock %}
+
+{% block main_content %}
+
+<section class="support-card">
+    <div class="card-accent"></div>
+
+    <div class="card-content">
+        <div class="step-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>پشتیبانی ۲۴ ساعته</span>
+        </div>
+
+        <div class="dynamic-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+        </div>
+
+        <h2 class="modern-title">
+            {% if pack %}
+            فعال‌سازی {{ pack.name }}
+            {% else %}
+            ارتباط با پشتیبانی
+            {% endif %}
+        </h2>
+
+        <p class="modern-subtitle">
+            {% if pack %}
+            برای دسترسی به این پک، لطفاً از راه‌های زیر با ما ارتباط بگیرید
+            {% else %}
+            تیم پشتیبانی اتومپ آماده پاسخگویی به شما عزیزان است
+            {% endif %}
+        </p>
+
+        {% if not user.is_authenticated %}
+        <div class="login-alert">
+      <span class="alert-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M6.17 18.85a7 7 0 0 1 11.66 0"/></svg>
+      </span>
+            <div class="login-alert-text">
+                برای فعال‌سازی سریع‌تر، ابتدا وارد حساب خود شوید
+            </div>
+            <a href="{% url 'account:login' %}?next={{ request.path }}" class="login-alert-link">ورود ←</a>
+        </div>
+        {% endif %}
+
+        <div class="contact-section">
+
+            <!-- روش تماس تلفنی -->
+            <div class="contact-method">
+                <div class="method-header">
+          <span class="method-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+                    <div class="method-title">تماس تلفنی</div>
+                    <div class="method-badge">۲۴ ساعته</div>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="supportPhone" value="09143224412" readonly class="modern-input">
+                    <div class="action-buttons">
+                        <button type="button" id="copyBtnPhone" class="action-icon-btn copy-btn" title="کپی شماره" aria-label="کپی شماره">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- روش اینستاگرام -->
+            <div class="contact-method">
+                <div class="method-header">
+          <span class="method-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </span>
+                    <div class="method-title">پیام در اینستاگرام</div>
+                    <div class="method-badge">پاسخ سریع</div>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="supportInstagram" value="rajabiii.ramin1363" readonly class="modern-input">
+                    <div class="action-buttons">
+                        <button type="button" id="copyBtnIg" class="action-icon-btn copy-btn" title="کپی آیدی اینستاگرام" aria-label="کپی آیدی اینستاگرام">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- آمار پشتیبانی -->
+            <div class="support-stats">
+                <div class="stat-chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span>زمان پاسخگویی</span>
+                    <strong>کمتر از ۵ دقیقه</strong>
+                </div>
+                <div class="stat-chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <span>روزهای کاری</span>
+                    <strong>۷ روز هفته</strong>
+                </div>
+            </div>
+
+            <div class="support-hint">برای کپی، روی شماره یا آیدی کلیک کنید</div>
+        </div>
+    </div>
+</section>
+
+<!-- توست نوتیفیکیشن -->
+<div id="modernToast" class="modern-toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <span>کپی شد!</span>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/unlock.js' %}"></script>
+{% endblock %}

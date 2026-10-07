@@ -1,0 +1,101 @@
+{% extends "site/base_site.html" %}
+{% load static %}
+
+{% block title %}اطلاعیه‌ها - اتومپ{% endblock %}
+
+{# آیکون هر اطلاعیه از بکند میاد (notif.icon = کلاس Font Awesome)، پس فقط FontAwesome لود میشه؛ بوت‌استرپ نه #}
+{% block vendor_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/lists.css' %}">
+<link rel="stylesheet" href="{% static 'css/notifications.css' %}">
+{% endblock %}
+
+{% block site_header %}
+<!-- HEAD -->
+<header class="page-head">
+    <a href="{% url 'main:home' %}" class="back-link" aria-label="بازگشت" draggable="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <div class="page-head-text">
+        <span class="page-eyebrow">آخرین اخبار و اطلاعیه‌های مهم اتومپ</span>
+        <h1 class="page-title">اطلاعیه‌ها</h1>
+    </div>
+    <img class="notif-logo" src="{% static 'svg/logo_no_bg.svg' %}" alt="لوگو" draggable="false">
+</header>
+{% endblock %}
+
+{% block main_content %}
+
+{% if unseen_notifications or seen_notifications %}
+
+{% if unseen_notifications %}
+<section class="notif-group">
+    <div class="packages-header">
+        <h2 class="section-title">جدیدترین اطلاعیه‌ها</h2>
+        <span class="section-hint">{{ unseen_count }}</span>
+    </div>
+
+    {% for notif in unseen_notifications %}
+    <div class="notification-card unread" style="--i: {{ forloop.counter }}" data-id="{{ notif.id }}" data-url="{{ notif.click_url|default:'' }}">
+        <span class="notif-icon"><i class="{{ notif.icon }}"></i></span>
+        <div class="notif-body">
+            <div class="notif-top">
+                <div class="notif-title">{{ notif.title }}</div>
+                <span class="priority-badge priority-{{ notif.priority }}">{{ notif.get_priority_display }}</span>
+            </div>
+            <div class="notif-message">{{ notif.message|linebreaksbr|truncatechars:200 }}</div>
+            <div class="card-footer">
+                <span class="notif-date"><i class="fas fa-calendar-alt"></i> {{ notif.created_at|date:"Y/m/d - H:i" }}</span>
+                {% if notif.click_url %}
+                <span class="click-hint"><i class="fas fa-external-link-alt"></i> کلیک برای مشاهده</span>
+                {% else %}
+                <span class="plain-hint"><i class="fas fa-envelope-open-text"></i> اطلاعیه عادی</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endif %}
+
+{% if seen_notifications %}
+<section class="notif-group">
+    <div class="packages-header">
+        <h2 class="section-title">اطلاعیه‌های قبلی</h2>
+    </div>
+
+    {% for notif in seen_notifications %}
+    <div class="notification-card" style="--i: {{ forloop.counter }}" data-id="{{ notif.id }}" data-url="{{ notif.click_url|default:'' }}">
+        <span class="notif-icon"><i class="{{ notif.icon }}"></i></span>
+        <div class="notif-body">
+            <div class="notif-top">
+                <div class="notif-title">{{ notif.title }}</div>
+                <span class="priority-badge priority-{{ notif.priority }}">{{ notif.get_priority_display }}</span>
+            </div>
+            <div class="notif-message">{{ notif.message|linebreaksbr|truncatechars:150 }}</div>
+            <div class="card-footer">
+                <span class="notif-date"><i class="fas fa-calendar-alt"></i> {{ notif.created_at|date:"Y/m/d - H:i" }}</span>
+                <span class="seen-badge"><i class="fas fa-check-circle"></i> مشاهده شده</span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endif %}
+
+{% else %}
+<div class="empty-notif">
+    <i class="fas fa-bell-slash"></i>
+    <p>هیچ اطلاعیه‌ای وجود ندارد</p>
+    <small>به زودی اطلاعیه‌های جدید برای شما ارسال خواهد شد</small>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/notifications.js' %}"></script>
+{% endblock %}

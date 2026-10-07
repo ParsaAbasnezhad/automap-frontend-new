@@ -1,0 +1,360 @@
+/* unlock.css — بعد از style.css، ui.css و lists.css (برای page-head و back-link) */
+
+button.back-link {
+    padding: 0;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.unlock-logo {
+    height: 34px;
+    width: auto;
+    margin-inline-start: auto;
+    flex-shrink: 0;
+}
+
+/* ========== کارت اصلی ========== */
+.support-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    animation: unlockIn .5s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+@keyframes unlockIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.card-accent {
+    height: 4px;
+    background: linear-gradient(90deg, var(--purple), var(--purple-deep) 60%, #b9a4f2);
+}
+
+.card-content {
+    position: relative;
+    padding: 26px 20px 22px;
+    isolation: isolate;
+}
+
+.card-content::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 130px;
+    background: radial-gradient(ellipse 70% 100% at 50% 0%, var(--purple-soft), transparent 80%);
+    z-index: -1;
+}
+
+/* ========== نشانگر + آیکون + تیتر ========== */
+.step-indicator {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 6px;
+    margin: 0 auto 18px;
+    padding: 4px 12px;
+    font-size: .7rem;
+    font-weight: 600;
+    color: var(--purple-deep);
+    background: var(--purple-soft);
+    border: 1px solid #d9ccff;
+    border-radius: 10px;
+}
+
+.step-indicator svg { width: 13px; height: 13px; }
+
+.dynamic-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 16px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: linear-gradient(135deg, var(--purple), var(--purple-deep));
+    border: 1px solid var(--purple-deep);
+    border-radius: 20px;
+    box-shadow: 0 10px 24px -8px var(--purple-glow), 0 0 0 5px var(--purple-soft);
+}
+
+.dynamic-icon svg { width: 32px; height: 32px; }
+
+.modern-title {
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -.01em;
+}
+
+.modern-subtitle {
+    margin-bottom: 20px;
+    font-size: .8rem;
+    line-height: 1.85;
+    text-align: center;
+    color: var(--text-2);
+}
+
+/* ========== نوتیف ورود ========== */
+.login-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 10px 12px;
+    background: var(--purple-soft);
+    border: 1px solid #d9ccff;
+    border-radius: 14px;
+}
+
+.alert-icon {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    color: var(--purple-deep);
+    background: #fff;
+    border: 1px solid #d9ccff;
+    border-radius: 10px;
+}
+
+.alert-icon svg { width: 18px; height: 18px; }
+
+.login-alert-text {
+    flex: 1;
+    font-size: .75rem;
+    line-height: 1.7;
+    color: var(--text-2);
+}
+
+.login-alert-link {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--purple-deep);
+    background: #fff;
+    border: 1px solid var(--purple-deep);
+    border-radius: 10px;
+    transition: all .25s;
+}
+
+.login-alert-link:hover {
+    color: #fff;
+    background: var(--purple);
+}
+
+/* ========== روش‌های تماس ========== */
+.contact-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-method {
+    padding: 14px;
+    background: #faf8ff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    transition: border-color .28s, background .28s;
+}
+
+.contact-method:hover {
+    background: #fff;
+    border-color: var(--line-strong);
+}
+
+.method-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.method-icon {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    color: var(--purple-deep);
+    background: var(--purple-soft);
+    border: 1px solid #d9ccff;
+    border-radius: 12px;
+}
+
+.method-icon svg { width: 18px; height: 18px; }
+
+.method-title {
+    flex: 1;
+    font-size: .88rem;
+    font-weight: 600;
+}
+
+.method-badge {
+    padding: 2px 10px;
+    font-size: .65rem;
+    font-weight: 600;
+    color: var(--purple-deep);
+    background: #fff;
+    border: 1px solid #d9ccff;
+    border-radius: 8px;
+}
+
+/* ========== اینپوت + دکمه‌ی کپی ========== */
+.input-group {
+    display: flex;
+    gap: 8px;
+}
+
+.modern-input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 14px;
+    direction: ltr;
+    text-align: left;
+    font-family: ui-monospace, monospace;
+    font-size: 16px;
+    letter-spacing: .3px;
+    color: var(--text);
+    background: #fff;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all .25s;
+}
+
+.modern-input:hover {
+    border-color: var(--purple);
+    background: var(--purple-soft);
+}
+
+.modern-input:focus {
+    outline: none;
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px var(--purple-glow);
+}
+
+.action-buttons { display: flex; gap: 6px; }
+
+.action-icon-btn {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    color: var(--purple-deep);
+    background: var(--purple-soft);
+    border: 1px solid var(--purple-deep);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all .25s;
+}
+
+.action-icon-btn svg { width: 18px; height: 18px; }
+
+.action-icon-btn:hover {
+    color: #fff;
+    background: var(--purple);
+}
+
+.action-icon-btn:active { transform: scale(.94); }
+
+/* ========== آمار ========== */
+.support-stats {
+    display: flex;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+}
+
+.stat-chip {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 10px 8px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    transition: all .25s;
+}
+
+.stat-chip:hover {
+    background: var(--purple-soft);
+    border-color: #d9ccff;
+}
+
+.stat-chip svg {
+    width: 16px;
+    height: 16px;
+    margin-bottom: 2px;
+    color: var(--purple);
+}
+
+.stat-chip span {
+    font-size: .68rem;
+    color: var(--text-3);
+}
+
+.stat-chip strong {
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.support-hint {
+    text-align: center;
+    font-size: .7rem;
+    color: var(--text-3);
+}
+
+/* ========== Toast ========== */
+.modern-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 96px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    font-size: .8rem;
+    font-weight: 500;
+    color: #fff;
+    background: var(--text);
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(16px);
+    transition: opacity .3s ease, transform .3s cubic-bezier(.16, 1, .3, 1), visibility .3s;
+}
+
+.modern-toast svg { width: 16px; height: 16px; color: #b9a4f2; }
+
+.modern-toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 420px) {
+    .card-content { padding: 22px 16px 18px; }
+    .login-alert { flex-wrap: wrap; }
+    .login-alert-text { flex-basis: calc(100% - 50px); }
+    .login-alert-link { margin-inline-start: auto; }
+    .support-stats { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .support-card { animation: none; }
+}

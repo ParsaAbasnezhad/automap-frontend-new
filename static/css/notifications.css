@@ -1,0 +1,253 @@
+/* notifications.css — بعد از style.css، ui.css و lists.css (برای page-head و back-link) */
+
+.notif-logo {
+    height: 34px;
+    width: auto;
+    margin-inline-start: auto;
+    flex-shrink: 0;
+}
+
+/* ========== گروه‌ها ========== */
+.notif-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ========== کارت اطلاعیه ========== */
+.notification-card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: border-color .28s, box-shadow .28s, background .28s, transform .15s;
+    animation: notifIn .45s cubic-bezier(.16, 1, .3, 1) backwards;
+    animation-delay: calc(.05s * var(--i, 0));
+}
+
+@keyframes notifIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.notification-card::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 3px;
+    height: 60%;
+    background: var(--purple);
+    border-radius: 3px 0 0 3px;
+    transform: translateY(-50%) scaleY(0);
+    transition: transform .3s cubic-bezier(.16, 1, .3, 1);
+}
+
+.notification-card:hover {
+    border-color: var(--purple);
+    box-shadow: var(--shadow-md);
+}
+
+.notification-card:hover::before { transform: translateY(-50%) scaleY(1); }
+
+.notification-card.pressed { transform: scale(.985); }
+
+/* خوانده‌نشده */
+.notification-card.unread {
+    background: linear-gradient(90deg, #ffffff 0%, #faf7ff 100%);
+    border-color: #d9ccff;
+}
+
+.notification-card.unread::before { transform: translateY(-50%) scaleY(1); }
+
+.notification-card.unread::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 8px;
+    height: 8px;
+    background: var(--purple);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px var(--purple-glow);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* ========== آیکون (باکس بردردار) ========== */
+.notif-icon {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    font-size: 1.05rem;
+    color: var(--purple-deep);
+    background: var(--purple-soft);
+    border: 1px solid #d9ccff;
+    border-radius: 12px;
+    transition: all .28s cubic-bezier(.4, 0, .2, 1);
+}
+
+.notification-card:hover .notif-icon {
+    color: #fff;
+    background: var(--purple);
+    border-color: var(--purple-deep);
+}
+
+/* ========== بدنه ========== */
+.notif-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.notif-top {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    padding-inline-end: 16px;      /* جا برای نقطه‌ی خوانده‌نشده */
+}
+
+.notif-title {
+    font-size: .92rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+}
+
+/* اولویت */
+.priority-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 1px 9px;
+    font-size: .64rem;
+    font-weight: 600;
+    border: 1px solid;
+    border-radius: 8px;
+}
+
+.priority-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.priority-low {
+    color: var(--purple-deep);
+    background: var(--purple-soft);
+    border-color: #d9ccff;
+}
+
+.priority-medium {
+    color: #b45309;
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+
+.priority-high {
+    color: #dc2626;
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+.notif-message {
+    margin: 8px 0 12px;
+    font-size: .8rem;
+    line-height: 1.85;
+    color: var(--text-2);
+    word-break: break-word;
+}
+
+/* ========== فوتر کارت ========== */
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: .68rem;
+    color: var(--text-3);
+}
+
+.card-footer span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-footer i { font-size: .65rem; }
+
+.click-hint,
+.seen-badge,
+.plain-hint {
+    padding: 2px 10px;
+    font-weight: 600;
+    border: 1px solid;
+    border-radius: 8px;
+}
+
+.click-hint {
+    color: var(--purple-deep);
+    background: var(--purple-soft);
+    border-color: var(--purple-deep);
+}
+
+.seen-badge {
+    color: #059669;
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+}
+
+.plain-hint {
+    color: var(--text-3);
+    background: #fff;
+    border-color: var(--line);
+}
+
+/* ========== حالت خالی ========== */
+.empty-notif {
+    padding: 48px 20px;
+    text-align: center;
+    background: var(--card);
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius);
+}
+
+.empty-notif i {
+    display: block;
+    margin-bottom: 14px;
+    font-size: 2.6rem;
+    color: var(--purple);
+    opacity: .4;
+}
+
+.empty-notif p {
+    margin-bottom: 6px;
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--text-2);
+}
+
+.empty-notif small {
+    font-size: .72rem;
+    color: var(--text-3);
+}
+
+@media (max-width: 420px) {
+    .notification-card { padding: 12px 13px; gap: 10px; }
+    .notif-icon { width: 38px; height: 38px; }
+    .notif-message { font-size: .78rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .notification-card { animation: none; }
+}
