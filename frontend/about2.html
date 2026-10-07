@@ -1,0 +1,537 @@
+{% extends "site/base_site.html" %} {% load static %} {% block title %}درباره ما
+- اتومپ{% endblock %} {% block extra_css %}
+<style>
+  .about-page {
+    padding: clamp(10px, 3vw, 16px) clamp(14px, 4vw, 18px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 4vw, 20px);
+  }
+
+  /* ── Hero card ── */
+  .hero-card {
+    border-radius: clamp(16px, 4.5vw, 22px);
+    padding: clamp(20px, 5vw, 28px) clamp(16px, 4vw, 24px);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.5s ease 0.1s both;
+  }
+  .hero-card::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    width: 160px;
+    height: 160px;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-card::after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    right: -20px;
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-logo svg {
+    width: 32px;
+    height: 32px;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .hero-card h2 {
+    color: #fff;
+    font-size: clamp(16px, 4.5vw, 20px);
+    font-weight: 800;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-card p {
+    font-size: clamp(12px, 3.2vw, 14px);
+    line-height: 1.85;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-ecu {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0d1f6b 100%);
+    box-shadow: 0 8px 28px rgba(13, 31, 107, 0.45);
+  }
+  .hero-ecu .hero-logo { background: rgba(96, 165, 250, 0.15); }
+  .hero-ecu .hero-logo svg { stroke: #60a5fa; }
+  .hero-ecu p { color: rgba(191, 219, 254, 0.88); }
+
+  .hero-elec {
+    background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+    box-shadow: 0 8px 28px rgba(2, 44, 34, 0.5);
+  }
+  .hero-elec .hero-logo { background: rgba(52, 211, 153, 0.15); }
+  .hero-elec .hero-logo svg { stroke: #34d399; }
+  .hero-elec p { color: rgba(167, 243, 208, 0.88); }
+
+  .hero-remap {
+    background: linear-gradient(135deg, #78350f 0%, #3d1a02 100%);
+    box-shadow: 0 8px 28px rgba(61, 26, 2, 0.5);
+  }
+  .hero-remap .hero-logo { background: rgba(251, 146, 60, 0.15); }
+  .hero-remap .hero-logo svg { stroke: #fb923c; }
+  .hero-remap p { color: rgba(254, 215, 170, 0.88); }
+
+  /* ── Section label ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-primary);
+    font-size: clamp(13px, 3.5vw, 15px);
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeIn 0.4s ease forwards;
+  }
+  .section-label::before {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 18px;
+    background: var(--accent-primary);
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ── Info Card ── */
+  .info-card {
+    background: var(--bg-secondary);
+    border-radius: clamp(14px, 4vw, 18px);
+    padding: clamp(14px, 4vw, 20px);
+    box-shadow: 0 4px 14px var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+  }
+  .info-card:hover {
+    box-shadow: 0 8px 24px var(--shadow-medium);
+    transform: translateY(-2px);
+  }
+
+  /* ── Member ── */
+  .member {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-direction: row-reverse;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .member:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .member-avatar {
+    width: clamp(44px, 12vw, 54px);
+    height: clamp(44px, 12vw, 54px);
+    border-radius: 50%;
+    background: var(--accent-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: clamp(16px, 4.5vw, 22px);
+    font-weight: 700;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(53, 99, 233, 0.25);
+    transition: transform 0.3s ease;
+  }
+  .member:hover .member-avatar { transform: scale(1.08); }
+  .member-info { flex: 1; text-align: right; }
+  .member-name {
+    color: var(--text-primary);
+    font-size: clamp(13px, 3.5vw, 15px);
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+  .member-role {
+    color: var(--accent-primary);
+    font-size: clamp(11px, 3vw, 13px);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .member-desc {
+    color: var(--text-secondary);
+    font-size: clamp(11px, 2.8vw, 12px);
+    line-height: 1.7;
+  }
+
+  /* ── Channel ── */
+  .channel-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .channel-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    background: var(--bg-primary);
+    border-radius: clamp(10px, 3vw, 14px);
+    padding: clamp(10px, 3vw, 14px) clamp(12px, 3.5vw, 16px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1.5px solid transparent;
+    text-decoration: none;
+  }
+  .channel-item:hover {
+    border-color: var(--accent-primary);
+    transform: translateX(-3px);
+  }
+  .channel-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row-reverse;
+  }
+  .channel-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .channel-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--card-text);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .channel-name {
+    color: var(--text-primary);
+    font-size: clamp(12px, 3.3vw, 14px);
+    font-weight: 700;
+  }
+  .channel-sub {
+    color: var(--text-secondary);
+    font-size: clamp(10px, 2.8vw, 12px);
+  }
+  .channel-arrow {
+    width: 18px;
+    height: 18px;
+    stroke: var(--text-secondary);
+    fill: none;
+    stroke-width: 2;
+    flex-shrink: 0;
+  }
+
+  /* ── Copy feedback ── */
+  .copy-toast {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1e293b;
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 9999;
+  }
+  .copy-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ── Chips ── */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    background: var(--bg-primary);
+    color: var(--accent-primary);
+    font-size: clamp(11px, 3vw, 13px);
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border-color);
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+  .chip:hover {
+    background: var(--accent-primary);
+    color: #fff;
+    border-color: var(--accent-primary);
+  }
+
+  /* ── Delays ── */
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+  .delay-5 { animation-delay: 0.5s; }
+  .delay-6 { animation-delay: 0.6s; }
+  .delay-7 { animation-delay: 0.7s; padding-bottom: 6rem; }
+
+  /* ── Header ── */
+  .back-btn {
+    background: var(--bg-primary);
+    border: none;
+    border-radius: 50%;
+    width: clamp(36px, 10vw, 44px);
+    height: clamp(36px, 10vw, 44px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--accent-primary);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+  .back-btn:hover {
+    background: var(--menu-active);
+    transform: scale(1.05);
+  }
+  .head-title { text-align: center; flex: 1; }
+  .head-title .title {
+    color: var(--accent-primary);
+    font-size: clamp(16px, 4.5vw, 20px);
+    font-weight: 700;
+  }
+  .head-title .subtitle {
+    color: var(--text-secondary);
+    font-size: clamp(11px, 3vw, 13px);
+    margin-top: 2px;
+  }
+</style>
+{% endblock %} {% block header_content %}
+<button class="back-btn" onclick="window.history.back()" aria-label="بازگشت">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+<div class="head-title">
+  <h1 class="title">درباره ما</h1>
+  <p class="subtitle">اتومپ</p>
+</div>
+<div class="logo-site">
+  <img src="{% static 'svg/logo_no_bg.svg' %}" alt="لوگو" />
+</div>
+{% endblock %} {% block main_content %}
+<div class="about-page">
+
+  <!-- ── شرکت و معرفی ── -->
+  <div class="section-label delay-1">شرکت و معرفی</div>
+
+  <div class="hero-card hero-ecu delay-2">
+    <div class="hero-logo">
+      <svg viewBox="0 0 24 24">
+        <rect x="7" y="7" width="10" height="10" rx="1.5" />
+        <path d="M9 7V4M12 7V4M15 7V4" />
+        <path d="M9 20v-3M12 20v-3M15 20v-3" />
+        <path d="M4 9h3M4 12h3M4 15h3" />
+        <path d="M17 9h3M17 12h3M17 15h3" />
+      </svg>
+    </div>
+    <h2>تعمیرات حرفه‌ای ECU</h2>
+    <p>
+      آموزش کامل عیب‌یابی، تعمیر و بازسازی ECU انواع خودرو، از مبانی الکترونیک
+      تا تعمیرات پیشرفته برد و ریمپ نرم‌افزار.
+    </p>
+  </div>
+
+  <div class="hero-card hero-elec delay-2">
+    <div class="hero-logo">
+      <svg viewBox="0 0 24 24">
+        <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      </svg>
+    </div>
+    <h2>تعمیرات برق خودرو</h2>
+    <p>
+      رفع مشکلات برقی تمامی خودروها، از سیم‌کشی و دیاگ گرفته تا تعمیر پشت آمپر،
+      سنسورها و سیستم‌های الکترونیکی پیچیده.
+    </p>
+  </div>
+
+  <div class="hero-card hero-remap delay-2">
+    <div class="hero-logo">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 8v4" />
+        <path d="M8.5 9.5l2.5 2.5" />
+        <circle cx="12" cy="12" r="1.5" fill="#fb923c" stroke="none" />
+        <path d="M6 12H4M20 12h-2M12 4V2" />
+      </svg>
+    </div>
+    <h2>ریمپ و تیونینگ</h2>
+    <p>
+      آموزش جامع چیپ تیونینگ و ریمپ ECU، افزایش قدرت موتور، بهینه‌سازی مصرف سوخت
+      و تنظیمات حرفه‌ای نرم‌افزار خودرو.
+    </p>
+  </div>
+
+  <!-- ── تیم گرافیک ── -->
+  <div class="section-label delay-4">تیم گرافیک و طراحی</div>
+
+  <div class="info-card delay-5">
+    <div class="member">
+      <div class="member-avatar">ب</div>
+      <div class="member-info">
+        <div class="member-name">امیر بارانی بیرانوند</div>
+        <div class="member-role">سرپرست تیم گرافیک</div>
+        <div class="member-desc">
+          کارشناس ارشد معماری، طراح نقشه‌های فنی و گرافیست، متخصص ترسیم نقشه‌های
+          مهندسی و طراحی و پردازش گرافیکی با تمرکز بر استانداردهای بین‌المللی.
+        </div>
+      </div>
+    </div>
+    <div class="channel-row">
+      <a class="channel-item" href="tel:09163565513">
+        <svg class="channel-arrow" viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        <div class="channel-left">
+          <div class="channel-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="channel-name">تماس تلفنی</div>
+            <div class="channel-sub">09163565513</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── تیم پشتیبانی ── -->
+  <div class="section-label delay-5">تیم پشتیبانی</div>
+
+  <div class="info-card delay-6">
+    <div class="member">
+      <div class="member-avatar" style="background: #dc2626">ع</div>
+      <div class="member-info">
+        <div class="member-name">مهندس پارسا عباس نژاد</div>
+        <div class="member-role">مدیر پشتیبانی</div>
+        <div class="member-desc">
+          کارشناس آمار و طراح و توسعه‌دهنده وب با تخصص در طراحی رابط کاربری،
+          توسعه فرانت‌اند و بک‌اند با ارائه یک تجربه حرفه‌ای، سریع و کارپسند
+          برای کاربران.
+        </div>
+      </div>
+    </div>
+    <div class="channel-row">
+      <a class="channel-item" href="tel:09309351385">
+        <svg class="channel-arrow" viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        <div class="channel-left">
+          <div class="channel-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="channel-name">تماس تلفنی</div>
+            <div class="channel-sub">09309351385</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── مدیریت سایت ── -->
+  <div class="section-label delay-6">مدیریت سایت</div>
+
+  <div class="info-card delay-7">
+    <div class="member">
+      <div class="member-avatar" style="background: rgb(96, 38, 220)">ع</div>
+      <div class="member-info">
+        <div class="member-name">مهندس رامین رجبی</div>
+        <div class="member-role">مدیر و بنیان‌گذار اتومپ</div>
+        <div class="member-desc">
+          کارشناس ارشد برق خودرو، مدرس و مخترع، تخصص تعمیرات ایسیو و نودهای
+          الکترونیکی خودرو.
+        </div>
+      </div>
+    </div>
+    <div class="channel-row">
+      <!-- کلیک = کپی شماره -->
+      <div class="channel-item" onclick="copyPhone('09143224412')" style="cursor:pointer;">
+        <svg class="channel-arrow" viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        <div class="channel-left">
+          <div class="channel-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="9" y="2" width="6" height="4" rx="1"/>
+              <rect x="4" y="5" width="16" height="17" rx="2"/>
+              <path d="M9 11h6M9 15h4"/>
+            </svg>
+          </div>
+          <div>
+            <div class="channel-name">کپی شماره تلفن</div>
+            <div class="channel-sub">09143224412</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- /about-page -->
+
+<!-- Toast نوتیفیکیشن کپی -->
+<div class="copy-toast" id="copyToast">شماره کپی شد ✓</div>
+
+<script>
+  function copyPhone(number) {
+    navigator.clipboard.writeText(number).then(function () {
+      var toast = document.getElementById('copyToast');
+      toast.classList.add('show');
+      setTimeout(function () {
+        toast.classList.remove('show');
+      }, 2000);
+    }).catch(function () {
+      // fallback برای مرورگرهای قدیمی
+      var el = document.createElement('textarea');
+      el.value = number;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      var toast = document.getElementById('copyToast');
+      toast.classList.add('show');
+      setTimeout(function () { toast.classList.remove('show'); }, 2000);
+    });
+  }
+</script>
+{% endblock %}
