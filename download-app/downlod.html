@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automap | تعمیرات ECU و برق خودرو</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
+
+        :root {
+            --red: #e50914;
+            --bg: #f5f5f6;
+            --box: #ffffff;
+            --text: #151517;
+            --muted: #70707a;
+            --border: #e4e4e8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .box {
+            background: var(--box);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+        .brand span { color: var(--red); }
+        .brand svg { width: 40px; height: 40px; border-radius: 10px; }
+        .tag { font-size: 0.8rem; color: var(--muted); }
+
+        /* Hero */
+        .hero { text-align: center; padding: 32px 20px; }
+        .hero svg { width: 72px; height: 72px; border-radius: 16px; margin-bottom: 12px; }
+        .hero h1 { font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; }
+        .hero p { color: var(--muted); font-size: 0.92rem; margin-bottom: 20px; }
+
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: #fff;
+            text-decoration: none;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 10px 26px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .btn:hover { opacity: 0.9; }
+
+        /* Titles */
+        .title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+
+        /* Services */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+        .item {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px;
+        }
+        .item h3 { font-size: 0.92rem; margin-bottom: 4px; }
+        .item p { font-size: 0.8rem; color: var(--muted); }
+
+        /* Team */
+        .member {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 14px 0;
+            border-top: 1px solid var(--border);
+        }
+        .member:first-of-type { border-top: none; padding-top: 0; }
+        .member:last-child { padding-bottom: 0; }
+        .m-name { font-weight: 700; font-size: 0.92rem; }
+        .m-role { font-size: 0.8rem; color: var(--red); }
+        .m-desc { font-size: 0.8rem; color: var(--muted); max-width: 380px; }
+        .btn-line {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-family: inherit;
+            font-size: 0.8rem;
+            color: var(--text);
+            text-decoration: none;
+            cursor: pointer;
+            direction: ltr;
+        }
+        .btn-line:hover { border-color: var(--red); color: var(--red); }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+        .footer a { color: var(--muted); text-decoration: none; margin-right: 12px; }
+        .footer a:hover { color: var(--red); }
+    </style>
+</head>
+<body>
+<div class="wrap">
+
+    <header class="box header">
+        <div class="brand">
+            <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="512" height="512" fill="white"/>
+                <path d="M181.76 38.4H166.4V115.2H181.76V38.4Z M258.56 38.4H243.2V115.2H258.56V38.4Z M335.36 38.4H320V115.2H335.36V38.4Z M181.76 396.8H166.4V473.6H181.76V396.8Z M258.56 396.8H243.2V473.6H258.56V396.8Z M335.36 396.8H320V473.6H335.36V396.8Z M115.2 192H38.4V207.36H115.2V192Z M115.2 256H38.4V271.36H115.2V256Z M115.2 320H38.4V335.36H115.2V320Z M473.6 192H396.8V207.36H473.6V192Z M473.6 256H396.8V271.36H473.6V256Z M473.6 320H396.8V335.36H473.6V320Z" fill="black"/>
+                <path d="M346.524 114.939H167.324C139.046 114.939 116.124 137.862 116.124 166.139V345.339C116.124 373.616 139.046 396.539 167.324 396.539H346.524C374.801 396.539 397.724 373.616 397.724 345.339V166.139C397.724 137.862 374.801 114.939 346.524 114.939Z" fill="black"/>
+                <path d="M205.855 334.367H201.723L155.711 334.367L184.742 261.224L219.051 177.633H248.082L255.999 201.143L295.587 313.469L302.86 334.367H205.855Z" fill="#F60014"/>
+                <path d="M266.556 313.469H195.564L237.525 198.531L266.556 313.469Z" fill="black"/>
+                <path d="M348.371 334.367L290.308 177.633H274.474H255.999L229.608 256L200.577 334.367H231.047L245.443 287.347L258.639 242.939L271.834 198.531L308.783 313.469H295.587L302.929 334.367H348.371Z" fill="white"/>
+            </svg>
+            <div>Auto<span>map</span></div>
+        </div>
+        <div class="tag">برق و الکترونیک خودرو</div>
+    </header>
+
+    <section class="box hero">
+        <h1>اپلیکیشن Automap</h1>
+        <p>تمام تعمیرات و آمپرهای مخصوص ECU و تعمیرات برق خودرو در یک اپلیکیشن.</p>
+        <a href="/static/fileapp/app.apk" class="btn" download>دانلود نسخه اندروید</a>
+    </section>
+
+    <section class="box">
+        <div class="title">خدمات</div>
+        <div class="grid">
+            <div class="item">
+                <h3>تعمیرات ECU</h3>
+                <p>عیب‌یابی، تعمیر و بازسازی ECU انواع خودرو.</p>
+            </div>
+            <div class="item">
+                <h3>برق خودرو</h3>
+                <p>سیم‌کشی، دیاگ، تعمیر پشت آمپر و سنسورها.</p>
+            </div>
+            <div class="item">
+                <h3>ریمپ و تیونینگ</h3>
+                <p>چیپ تیونینگ، افزایش قدرت و بهینه‌سازی مصرف.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="box">
+        <div class="title">تیم</div>
+
+        <div class="member">
+            <div>
+                <div class="m-name">مهندس امیر بارانی بیرانوند</div>
+                <div class="m-role">سرپرست تیم گرافیک</div>
+                <div class="m-desc">کارشناس ارشد معماری، طراح نقشه‌های فنی و گرافیست.</div>
+            </div>
+            <button class="btn-line" onclick="copyNum('09163565513', this)">کپی: 09163565513</button>
+        </div>
+
+        <div class="member">
+            <div>
+                <div class="m-name">مهندس پارسا عباس نژاد</div>
+                <div class="m-role">مدیر پشتیبانی</div>
+                <div class="m-desc">کارشناس آمار و توسعه‌دهنده وب (فرانت‌اند و بک‌اند).</div>
+            </div>
+            <button class="btn-line" onclick="copyNum('09309351385', this)">کپی: 09309351385</button>
+        </div>
+
+        <div class="member">
+            <div>
+                <div class="m-name">مهندس رامین رجبی</div>
+                <div class="m-role">مدیر و بنیان‌گذار اتومپ</div>
+                <div class="m-desc">کارشناس ارشد برق خودرو، مدرس و مخترع، متخصص تعمیرات ECU.</div>
+            </div>
+            <button class="btn-line" onclick="copyNum('09143224412', this)">کپی: 09143224412</button>
+        </div>
+    </section>
+
+    <footer class="box footer">
+        <div>© ۱۴۰۵ Automap | تمامی حقوق محفوظ است</div>
+        <div>
+            <a href="https://instagram.com/automap" target="_blank" rel="noopener">اینستاگرام</a>
+            <a href="https://t.me/automap" target="_blank" rel="noopener">تلگرام</a>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+    function copyNum(num, btn) {
+        const old = btn.textContent;
+        const done = () => {
+            btn.textContent = '✓ کپی شد';
+            setTimeout(() => btn.textContent = old, 1800);
+        };
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(num).then(done).catch(fallback);
+        } else { fallback(); }
+        function fallback() {
+            const el = document.createElement('textarea');
+            el.value = num; document.body.appendChild(el);
+            el.select(); document.execCommand('copy');
+            document.body.removeChild(el);
+            done();
+        }
+    }
+</script>
+</body>
+</html>
