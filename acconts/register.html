@@ -1,0 +1,157 @@
+{% extends "accounts/base_account.html" %}
+{% load static %}
+
+{% block title %}ثبت‌نام در اتومپ{% endblock %}
+{% block header_title %}عضویت جدید{% endblock %}
+
+{% block content %}
+<form method="post" action="{% url 'account:register' %}" novalidate>
+  {% csrf_token %}
+
+  <div class="row-2">
+    <div class="form-group">
+      <label for="id_first_name" class="form-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>{{ form.first_name.label }}
+      </label>
+      <input type="text"
+             name="first_name"
+             id="id_first_name"
+             class="form-control {% if form.first_name.errors %}is-invalid{% endif %}"
+             value="{{ form.first_name.value|default:'' }}"
+             placeholder="نام"
+             required
+             autocomplete="given-name">
+      {% if form.first_name.errors %}
+      <div class="invalid-feedback">{{ form.first_name.errors.0 }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="id_last_name" class="form-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>{{ form.last_name.label }}
+      </label>
+      <input type="text"
+             name="last_name"
+             id="id_last_name"
+             class="form-control {% if form.last_name.errors %}is-invalid{% endif %}"
+             value="{{ form.last_name.value|default:'' }}"
+             placeholder="نام خانوادگی"
+             required
+             autocomplete="family-name">
+      {% if form.last_name.errors %}
+      <div class="invalid-feedback">{{ form.last_name.errors.0 }}</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="id_phone" class="form-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>{{ form.phone.label }}
+    </label>
+    <input type="tel"
+           name="phone"
+           id="id_phone"
+           class="form-control {% if form.phone.errors %}is-invalid{% endif %}"
+           value="{{ form.phone.value|default:'' }}"
+           placeholder="۰۹۱۲۳۴۵۶۷۸۹"
+           dir="ltr"
+           maxlength="11"
+           required
+           autocomplete="tel">
+    {% if form.phone.errors %}
+    <div class="invalid-feedback">{{ form.phone.errors.0 }}</div>
+    {% endif %}
+    <div class="form-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>شماره موبایل باید با ۰۹ شروع شود</div>
+  </div>
+
+  <div class="form-group">
+    <label for="id_national_id" class="form-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M5.5 16a3 3 0 0 1 5 0M14 10h5M14 14h3"/></svg>{{ form.national_id.label }}
+    </label>
+    <input type="text"
+           name="national_id"
+           id="id_national_id"
+           class="form-control {% if form.national_id.errors %}is-invalid{% endif %}"
+           value="{{ form.national_id.value|default:'' }}"
+           placeholder="کد ملی ۱۰ رقمی"
+           dir="ltr"
+           maxlength="10"
+           inputmode="numeric"
+           pattern="[0-9]*"
+           required
+           autocomplete="off">
+    {% if form.national_id.errors %}
+    <div class="invalid-feedback">{{ form.national_id.errors.0 }}</div>
+    {% endif %}
+    <div class="form-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>کد ملی باید ۱۰ رقم باشد</div>
+  </div>
+
+  <div class="form-group">
+    <label for="id_password1" class="form-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M10.85 12.15 19 4M18 5l3 3M15 8l2 2"/></svg>{{ form.password1.label }}
+    </label>
+    <div class="input-group">
+      <input type="password"
+             name="password1"
+             id="id_password1"
+             class="form-control {% if form.password1.errors %}is-invalid{% endif %}"
+             placeholder="رمز عبور قوی انتخاب کنید"
+             required
+             autocomplete="new-password">
+      <button type="button" class="pw-toggle" data-toggle-password="id_password1" aria-label="نمایش رمز عبور">
+        <svg class="eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg><svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+      </button>
+    </div>
+    {% if form.password1.errors %}
+    <div class="invalid-feedback">{{ form.password1.errors.0 }}</div>
+    {% endif %}
+    <div class="form-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>حداقل ۸ کاراکتر، شامل حروف بزرگ، کوچک و عدد</div>
+    <div class="strength"><div class="strength-bar" id="passwordStrength"></div></div>
+  </div>
+
+  <div class="form-group">
+    <label for="id_password2" class="form-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11.5 14.5 16 9.5"/></svg>{{ form.password2.label }}
+    </label>
+    <div class="input-group">
+      <input type="password"
+             name="password2"
+             id="id_password2"
+             class="form-control {% if form.password2.errors %}is-invalid{% endif %}"
+             placeholder="رمز عبور را تکرار کنید"
+             required
+             autocomplete="new-password">
+      <button type="button" class="pw-toggle" data-toggle-password="id_password2" aria-label="نمایش رمز عبور">
+        <svg class="eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg><svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+      </button>
+    </div>
+    {% if form.password2.errors %}
+    <div class="invalid-feedback">{{ form.password2.errors.0 }}</div>
+    {% endif %}
+  </div>
+
+  {% for error in form.non_field_errors %}
+  <div class="alert alert-danger">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span>{{ error }}</span>
+  </div>
+  {% endfor %}
+
+  <div class="form-check">
+    <input type="checkbox" id="termsCheckbox" required>
+    <label for="termsCheckbox">
+      <a href="#" class="auth-inline-link">قوانین و مقررات</a> را مطالعه کرده و پذیرفته‌ام
+    </label>
+  </div>
+
+  <button type="submit" class="auth-submit">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>ثبت‌نام و عضویت
+  </button>
+</form>
+
+<div class="auth-footer">
+  <span>قبلاً ثبت‌نام کرده‌اید؟</span>
+  <a href="{% url 'account:login' %}" class="auth-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>وارد شوید
+  </a>
+</div>
+{% endblock %}

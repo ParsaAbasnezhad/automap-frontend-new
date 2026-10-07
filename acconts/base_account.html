@@ -1,0 +1,59 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <title>{% block title %}حساب کاربری{% endblock %} | Automap</title>
+
+    <!-- فونت محلی (بدون گوگل، بدون @import) -->
+    <link rel="preload" href="{% static 'fonts/Vazir-Regular.woff2' %}" as="font" type="font/woff2" crossorigin />
+    <style>
+        @font-face { font-family: "Vazirmatn"; src: url("{% static 'fonts/Vazir-Regular.woff2' %}") format("woff2"); font-weight: 300 400; font-display: swap; }
+        @font-face { font-family: "Vazirmatn"; src: url("{% static 'fonts/Vazir-Medium.woff2' %}") format("woff2"); font-weight: 500; font-display: swap; }
+        @font-face { font-family: "Vazirmatn"; src: url("{% static 'fonts/Vazir-Bold.woff2' %}") format("woff2"); font-weight: 600 800; font-display: swap; }
+    </style>
+
+    <!-- بدون بوت‌استرپ و Font Awesome: سبک‌تر و سریع‌تر -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/ui.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/site.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/account.css' %}" />
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="auth-page">
+<main class="app auth-wrap">
+    <div class="auth-card">
+        <div class="auth-accent"></div>
+
+        <div class="auth-header">
+            <img class="auth-logo" src="{% static 'svg/logo_no_bg.svg' %}" alt="لوگو" width="56" height="56" draggable="false" />
+            <h1>{% block header_title %}حساب کاربری{% endblock %}</h1>
+            <p>به سامانه اتومپ خوش آمدید</p>
+        </div>
+
+        <div class="auth-body">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {% if message.tags == 'success' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11.5 14.5 16 9.5"/></svg>{% elif message.tags == 'danger' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>{% else %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>{% endif %}
+                <span>{{ message }}</span>
+                <button type="button" class="alert-close" aria-label="بستن">&times;</button>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</main>
+
+<script src="{% static 'js/ui.js' %}" defer></script>
+<script src="{% static 'js/base.js' %}" defer></script>
+<script src="{% static 'js/account.js' %}" defer></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>
